@@ -57,7 +57,6 @@ function App() {
       getAllContacts();
     } catch (error) {
       console.log(error);
-      toastError(error.message);
     }
   };
 
