@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import ContactList from "./components/ContactList";
 import { getContacts, saveContact, udpatePhoto } from "./api/ContactService";
 import { Routes, Route, Navigate } from "react-router-dom";
+import ContactDetail from "./components/ContactDetail";
 
 function App() {
   const modalRef = useRef();
@@ -60,6 +60,23 @@ function App() {
     }
   };
 
+  const updateContact = async (contact) => {
+    try {
+      const { data } = await saveContact(contact);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const updateImage = async (formData) => {
+    try {
+      const { data: photoUrl } = await udpatePhoto(formData);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const toggleModal = (show) =>
     show ? modalRef.current.showModal() : modalRef.current.close();
 
@@ -81,6 +98,15 @@ function App() {
                   data={data}
                   currentPage={currentPage}
                   getAllContacts={getAllContacts}
+                />
+              }
+            />
+            <Route
+              path="/contacts/:id"
+              element={
+                <ContactDetail
+                  updateContact={updateContact}
+                  updateImage={updateImage}
                 />
               }
             />
