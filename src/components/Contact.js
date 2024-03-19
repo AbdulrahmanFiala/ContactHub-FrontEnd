@@ -15,7 +15,7 @@ const Contact = ({ contact }) => {
       </div>
       <div className="contact__body">
         <p>
-          <i className="bi bi-envelope"></i> {contact.email.substring(0, 20)}{" "}
+          <i className="bi bi-envelope"></i> {contact.email.substring(0, 23)}
         </p>
         <p>
           <i className="bi bi-geo"></i> {contact.address}
