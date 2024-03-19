@@ -23,7 +23,8 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
 
   const removeContact = async (id) => {
     try {
-      deleteContact(id);
+      await deleteContact(id);
+      getAllContacts();
       navigate("/contacts");
       toastSuccess("Contact deleted successfully");
     } catch (error) {
@@ -180,7 +181,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
                 <button
                   type="button"
                   onClick={() => removeContact(id)}
-                  class="btn btn-danger"
+                  className="btn btn-danger"
                 >
                   Delete Contact
                 </button>
