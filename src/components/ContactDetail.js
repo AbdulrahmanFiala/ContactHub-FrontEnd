@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useParams } from "react-router-dom";
-import { getContact } from "../api/ContactService";
+import { Link, useParams, useNavigate } from "react-router-dom";
+
+import { getContact, deleteContact } from "../api/ContactService";
 import { toastError, toastSuccess } from "../api/ToastService";
 
 const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
@@ -18,6 +19,18 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
   });
 
   const { id } = useParams();
+  const navigate = useNavigate();
+
+  const removeContact = async (id) => {
+    try {
+      deleteContact(id);
+      navigate("/contacts");
+      toastSuccess("Contact deleted successfully");
+    } catch (error) {
+      console.log(error);
+      toastError(error.message);
+    }
+  };
 
   const fetchContact = async (id) => {
     try {
@@ -25,7 +38,6 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
       setContact(data);
       console.log(data);
       getAllContacts();
-      //toastSuccess('Contact retrieved');
     } catch (error) {
       console.log(error);
       toastError(error.message);
@@ -111,7 +123,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
                 <div className="input-box">
                   <span className="details">Email</span>
                   <input
-                    type="text"
+                    type="email"
                     value={contact.email}
                     onChange={onChange}
                     name="email"
@@ -124,7 +136,9 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
                     type="text"
                     value={contact.phone}
                     onChange={onChange}
+                    pattern="01[0-5]{1}[0-9]{8}"
                     name="phone"
+                    title="Please enter a valid Egyptian phone number."
                     required
                   />
                 </div>
@@ -161,7 +175,14 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
               </div>
               <div className="form_footer">
                 <button type="submit" className="btn">
-                  Save
+                  Update Contact
+                </button>
+                <button
+                  type="button"
+                  onClick={() => removeContact(id)}
+                  class="btn btn-danger"
+                >
+                  Delete Contact
                 </button>
               </div>
             </form>
