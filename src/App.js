@@ -145,7 +145,7 @@ function App() {
               <div className="input-box">
                 <span className="details">Email</span>
                 <input
-                  type="text"
+                  type="email"
                   value={values.email}
                   onChange={onChange}
                   name="email"
@@ -168,6 +168,8 @@ function App() {
                   type="text"
                   value={values.phone}
                   onChange={onChange}
+                  pattern="01[0-5]{1}[0-9]{8}"
+                  title="Please enter a valid Egyptian phone number."
                   name="phone"
                   required
                 />
