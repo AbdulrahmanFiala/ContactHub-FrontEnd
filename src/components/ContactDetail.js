@@ -5,6 +5,7 @@ import { toastError, toastSuccess } from "../api/ToastService";
 
 const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
   const inputRef = useRef();
+  const [updated, setUpdated] = useState(true);
   const [contact, setContact] = useState({
     id: "",
     name: "",
@@ -46,6 +47,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
         photoUrl: `${prev.photoUrl}?updated_at=${new Date().getTime()}`,
       }));
       toastSuccess("Photo updated");
+      setUpdated(!updated);
     } catch (error) {
       console.log(error);
       toastError(error.message);
@@ -65,7 +67,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
 
   useEffect(() => {
     fetchContact(id);
-  }, []);
+  }, [updated]);
 
   return (
     <>
