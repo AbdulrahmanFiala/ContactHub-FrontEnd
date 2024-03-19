@@ -1,5 +1,6 @@
 import React from "react";
 import Contact from "./Contact";
+import { Link } from "react-router-dom";
 
 const ContactList = ({ data, currentPage, getAllContacts }) => {
   return (
@@ -17,30 +18,30 @@ const ContactList = ({ data, currentPage, getAllContacts }) => {
 
       {data?.content?.length > 0 && data?.totalPages > 1 && (
         <div className="pagination">
-          <a
+          <Link
             onClick={() => getAllContacts(currentPage - 1)}
             className={0 === currentPage ? "disabled" : ""}
           >
             &laquo;
-          </a>
+          </Link>
 
           {data &&
             [...Array(data.totalPages).keys()].map((page, index) => (
-              <a
+              <Link
                 onClick={() => getAllContacts(page)}
                 className={currentPage === page ? "active" : ""}
                 key={page}
               >
                 {page + 1}
-              </a>
+              </Link>
             ))}
 
-          <a
+          <Link
             onClick={() => getAllContacts(currentPage + 1)}
             className={data.totalPages === currentPage + 1 ? "disabled" : ""}
           >
             &raquo;
-          </a>
+          </Link>
         </div>
       )}
     </main>
