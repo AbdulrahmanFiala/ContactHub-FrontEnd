@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import { getContact } from "../api/ContactService";
 import { toastError, toastSuccess } from "../api/ToastService";
 
-const ContactDetail = ({ updateContact, updateImage }) => {
+const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
   const inputRef = useRef();
   const [contact, setContact] = useState({
     id: "",
@@ -23,6 +23,7 @@ const ContactDetail = ({ updateContact, updateImage }) => {
       const { data } = await getContact(id);
       setContact(data);
       console.log(data);
+      getAllContacts();
       //toastSuccess('Contact retrieved');
     } catch (error) {
       console.log(error);

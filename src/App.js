@@ -114,6 +114,7 @@ function App() {
                 <ContactDetail
                   updateContact={updateContact}
                   updateImage={updateImage}
+                  getAllContacts={getAllContacts}
                 />
               }
             />
