@@ -9,7 +9,7 @@ const Contact = ({ contact }) => {
           <img src={contact.photoUrl} alt={contact.name} />
         </div>
         <div className="contact__details">
-          <p className="contact_name">{contact.name.substring(0, 15)} </p>
+          <p className="contact_name">{contact.name.substring(0, 17)} </p>
           <p className="contact_title">{contact.title}</p>
         </div>
       </div>
