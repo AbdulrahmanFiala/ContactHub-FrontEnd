@@ -545,7 +545,8 @@ dialog[open] {
   margin-bottom: 5px;
 }
 
-.input-box input {
+.input-box input,
+.input-box select {
   height: 45px;
   width: 100%;
   outline: none;
@@ -554,6 +555,11 @@ dialog[open] {
   padding-left: 15px;
   border: 1px solid #e6e1e1;
   transition: all 0.3s ease;
+}
+
+.input-box select {
+  background-color: #fff;
+  border-color: #b9b7ba;
 }
 
 .input-box input:is(:focus, :valid) {
