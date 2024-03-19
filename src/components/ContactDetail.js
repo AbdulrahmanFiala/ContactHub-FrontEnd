@@ -89,10 +89,7 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
       </Link>
       <div className="profile">
         <div className="profile__details">
-          <img
-            src={contact.photoUrl}
-            alt={`Profile photo of ${contact.name}`}
-          />
+          <img src={contact.photoUrl} alt={`${contact.name}`} />
           <div className="profile__metadata">
             <p className="profile__name">{contact.name}</p>
             <p className="profile__muted">JPG, GIF, or PNG. Max size of 10MG</p>
@@ -165,13 +162,15 @@ const ContactDetail = ({ updateContact, updateImage, getAllContacts }) => {
                 </div>
                 <div className="input-box">
                   <span className="details">Status</span>
-                  <input
-                    type="text"
+                  <select
                     value={contact.status}
                     onChange={onChange}
                     name="status"
                     required
-                  />
+                  >
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
                 </div>
               </div>
               <div className="form_footer">
