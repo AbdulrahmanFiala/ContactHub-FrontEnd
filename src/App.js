@@ -185,14 +185,18 @@ function App() {
                 />
               </div>
               <div className="input-box">
-                <span className="details">Account Status</span>
-                <input
-                  type="text"
+                <span className="details">Status</span>
+                <select
                   value={values.status}
                   onChange={onChange}
                   name="status"
                   required
-                />
+                >
+                  <option value="Active" selected>
+                    Active
+                  </option>
+                  <option value="Inactive">Inactive</option>
+                </select>
               </div>
               <div className="file-input">
                 <span className="details">Profile Photo</span>
