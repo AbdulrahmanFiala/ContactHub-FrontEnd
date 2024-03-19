@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import ContactList from "./components/ContactList";
-import { getContacts, saveContact, udpatePhoto } from "./api/ContactService";
+import { getContacts, saveContact, updatePhoto } from "./api/ContactService";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ContactDetail from "./components/ContactDetail";
 import { toastError } from "./api/ToastService";
@@ -46,7 +46,7 @@ function App() {
       const formData = new FormData();
       formData.append("file", file, file.name);
       formData.append("id", data.id);
-      const { data: photoUrl } = await udpatePhoto(formData);
+      const { data: photoUrl } = await updatePhoto(formData);
       toggleModal(false);
       setFile(undefined);
       fileRef.current.value = null;
@@ -77,7 +77,7 @@ function App() {
 
   const updateImage = async (formData) => {
     try {
-      const { data: photoUrl } = await udpatePhoto(formData);
+      const { data: photoUrl } = await updatePhoto(formData);
     } catch (error) {
       console.log(error);
       toastError(error.message);

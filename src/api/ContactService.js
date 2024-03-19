@@ -18,7 +18,7 @@ export async function udpateContact(contact) {
   return await axios.post(API_URL, contact);
 }
 
-export async function udpatePhoto(formData) {
+export async function updatePhoto(formData) {
   return await axios.put(`${API_URL}/photo`, formData);
 }
 
